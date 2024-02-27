@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Wittingau';
+    src: url('./fonts/Wittingau-Medium.ttf') format('truetype');
+}
+
+h1 {
+    font-family: 'Wittingau', sans-serif;
+    color: black;
+    font-size: 10em;
+}
