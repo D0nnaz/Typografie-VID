@@ -174,19 +174,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const elements = document.getElementsByClassName("changeFont");
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("dblclick", function () {
+  const changeFont = document.getElementsByClassName("changeFont");
+  for (var i = 0; i < changeFont.length; i++) {
+    changeFont[i].addEventListener("dblclick", function () {
       this.setAttribute("contenteditable", "true");
     });
-    elements[i].addEventListener("input", function () {
+    changeFont[i].addEventListener("input", function () {
       var maxLength = parseInt(this.getAttribute("data-maxlength"), 10);
       if (this.textContent.length > maxLength) {
         this.textContent = this.textContent.slice(0, maxLength);
         this.removeAttribute("contenteditable");
       }
     });
-    elements[i].addEventListener("blur", function () {
+    changeFont[i].addEventListener("stop", function () {
       this.removeAttribute("contenteditable");
     });
   }
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "Rotunda":
         newText =
-          "Rotunda, ontstaan in Italië, is de zus van Textualis in Zuid-Europa. Het lijkt ook meer op Karolingische minuskel. De naam komt van 'rotundus', wat verwijst naar een ronde plattegrond. Rotunda letters zijn meer afgerond en daardoor leesbaarder dan Textualis, zelfs in smalle vormen. ";
+          "Rotunda, ontstaan in Italië, is de zus van Textualis in Zuid-Europa. Het lijkt ook meer op Karolingische minuskel. De naam komt van 'rotundus', wat rond betekent. Rotunda letters zijn meer afgerond en daardoor leesbaarder dan Textualis, zelfs in smalle vormen. ";
         break;
       case "Schwabacher":
         newText =
@@ -281,15 +281,15 @@ document.getElementById("zoomedImage").addEventListener("click", function () {
 
 // ▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
 
-var h2Elements = document.querySelectorAll("h2");
-var index = 0,
+const h2Elements = document.querySelectorAll("h2");
+let index = 0,
   isAdding = true;
-var textsToBeTyped = [];
+let textsToBeTyped = [];
 
 h2Elements.forEach(function (h2Element) {
   textsToBeTyped.push(h2Element.innerText);
-  var h2Height = h2Element.offsetHeight; 
-  h2Element.style.height = h2Height + "px"; 
+  var h2Height = h2Element.offsetHeight;
+  h2Element.style.height = h2Height + "px";
   h2Element.innerText = "";
 });
 
@@ -334,3 +334,5 @@ const observer = new IntersectionObserver(playAnimationOnce);
 h2Elements.forEach((h2Element) => {
   observer.observe(h2Element);
 });
+
+// ▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀
