@@ -1,10 +1,556 @@
+/*********************/
+/*      GENERAL      */
+/*********************/
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    list-style-type: none;
+}
+
+p {
+    font-family: "Lato", sans-serif;
+    font-weight: 900;
+}
+
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+    cursor: url(./img/cursor3.png) 25 25, auto;
+}
+
+
+
 @font-face {
     font-family: 'Wittingau';
     src: url('./fonts/Wittingau-Medium.ttf') format('truetype');
 }
 
-h1 {
+@font-face {
+    font-family: 'Lato';
+    src: url('./fonts/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Textura";
+    src: url("./fonts/GutenbergTextura.ttf");
+}
+
+@font-face {
+    font-family: "Rotunda";
+    src: url("./fonts/rotunda.ttf");
+}
+
+@font-face {
+    font-family: "Schwabacher";
+    src: url("./fonts/Schwabacher.ttf");
+}
+
+@font-face {
+    font-family: "Fraktur";
+    src: url("./fonts/TheuerdankFraktur.ttf");
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.text {
     font-family: 'Wittingau', sans-serif;
+    font-size: 5rem;
     color: black;
+}
+
+h1 {
     font-size: 10em;
 }
+
+h4 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h2.animate {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation:
+        typing 3.5s steps(30, end),
+        blink-caret .5s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange
+    }
+}
+
+#zoomedImage {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    text-align: center;
+    overflow: auto;
+}
+
+#zoomedImg {
+    max-width: 100%;
+    width: auto;
+    min-height: 80%;
+    margin-top: 50px;
+}
+
+.textura {
+    font-family: 'Textura';
+    --font-size: 6.9em;
+    --translate-y: 10px;
+}
+
+.rotunda {
+    font-family: 'Rotunda';
+    --font-size: 5.3em;
+    --translate-y: 11px;
+}
+
+.schwabacher {
+    font-family: 'Schwabacher';
+    --translate-y: 15px;
+    --font-size: 6em;
+}
+
+.fraktur {
+    font-family: 'Fraktur';
+    --translate-y: 9px;
+    --font-size: 7.4em;
+}
+
+.changeFont {
+    font-size: var(--font-size, 16px);
+    transform: translateY(var(--translate-y, 0));
+    transition: all 0.2s ease;
+}
+
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.mist-container {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+canvas {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%);
+    z-index: 0;
+}
+
+
+.content {
+    z-index: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 0.7;
+}
+
+
+
+/*********************/
+/*   FIRST SECTION   */
+/*********************/
+.history {
+    text-align: justify;
+    word-spacing: -0.5px;
+    width: 40%;
+    margin: 11em auto;
+    min-height: 50em;
+}
+
+.history p:nth-of-type(4),
+.history p:last-of-type {
+    hyphens: auto;
+}
+
+.history h2 {
+    font-size: 5.6em;
+    padding-top: 1em;
+}
+
+
+.history-wrapper img {
+    width: 30%;
+    float: right;
+    margin: 0 0 0em 1em;
+}
+
+img.poster {
+    width: 42.15%;
+}
+
+.antiqua {
+    transform: translateY(0.5em);
+}
+
+.history-wrapper img:nth-of-type(odd):not(.typeface) {
+    float: left;
+    margin: 0 1em 0em 0;
+}
+
+.history-wrapper p:nth-of-type(even) {
+    color: darkred;
+}
+
+
+.history-wrapper p:first-of-type::first-letter {
+    font-size: 2em;
+    line-height: 0.1;
+    font-family: 'Wittingau';
+    color: darkred;
+}
+
+.modern {
+    display: grid;
+    grid-template-rows: 1fr 20em;
+    max-width: 100%;
+    justify-items: stretch;
+    align-items: start;
+    gap: 1em;
+}
+
+.modern img {
+    margin: 0;
+    width: 100%;
+}
+
+.modern img:last-of-type {
+    filter: invert(0.1);
+}
+
+
+.decoration {
+    height: 30em;
+    position: absolute;
+    transform: translateY(-7em) translateX(50%);
+}
+
+.decoration2 {
+    height: 30em;
+    position: absolute;
+    right: 0;
+    transform: scaleX(-1) translateY(-7em) translateX(50%);
+}
+
+.decoration3 {
+    height: 30em;
+    position: absolute;
+    transform: scaleY(-1) translate(50%, 35em);
+    left: 0;
+    margin-bottom: 2em;
+}
+
+.decoration4 {
+    height: 30em;
+    position: absolute;
+    right: 0;
+    transform: scaleY(-1) scaleX(-1) translate(50%, 35em);
+}
+
+
+.characteristics {
+    position: relative;
+    height: 32em;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 15em;
+}
+
+.characteristics h2 {
+    margin-bottom: 0.5em;
+}
+
+
+
+
+.line-wrap {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 10em;
+    text-align: center;
+}
+
+
+.line {
+    width: 38em;
+    height: 2px;
+    background-color: black;
+    margin: 10px auto;
+}
+
+.line:nth-of-type(3) {
+    margin-top: 45px;
+}
+
+.line-wrap h3 {
+    position: absolute;
+    font-size: 6.9em;
+    transform: translateY(7px);
+}
+
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: darkred;
+    position: absolute;
+    opacity: 0.8;
+    border: none;
+}
+
+.circle:hover,
+.circle:focus {
+    border: 5px dotted red;
+    background-color: transparent;
+    cursor: none;
+}
+
+.circle1 {
+    transform: translate(-1.2em, -2em);
+}
+
+.circle2 {
+    transform: translate(3.8em, 0em);
+}
+
+.circle3 {
+    transform: translate(12.45em, 1.8em);
+}
+
+.circle4 {
+    transform: translate(-13em, 2.45em);
+}
+
+.circle5 {
+    transform: translate(-11.5em, -1em);
+}
+
+.pop-up {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    font-size: 1.2em;
+    color: darkred;
+    font-family: "Lato", sans-serif;
+    float: right;
+    text-align: justify;
+    hyphens: auto;
+}
+
+
+.circle:focus~.line-wrap {
+    filter: blur(1em);
+}
+
+
+
+
+
+
+/* .textura,
+.rotunda,
+.bastarda,
+.fraktur {
+height: fit-content;
+} */
+
+.line-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+
+.soorten {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 13em 7em 1fr;
+    grid-gap: 10px;
+    justify-items: center;
+    text-align: center;
+    gap: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-bottom: 10em;
+}
+
+.soorten h2 {
+    margin: 0;
+}
+
+.soorten p {
+    text-align: justify;
+}
+
+.soort-info {
+    grid-column: 1 / -1;
+}
+
+.line-wrap {
+    grid-column: 1 / -1;
+}
+
+
+
+.alfabet,
+.karakters {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+#svg,
+#karakter {
+    transform: translateX(4.5em);
+}
+
+.karakters {
+    height: 75em;
+}
+
+
+#svg-container {
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+.text {
+    font-family: 'Wittingau', sans-serif !important;
+    font-size: 6em;
+    font-weight: 500;
+    fill: none;
+    stroke: black;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+}
+
+.text.animated {
+    animation: lekkerTekenen 4s ease-in-out forwards;
+}
+
+
+
+@keyframes lekkerTekenen {
+    from {
+        stroke-dashoffset: 600;
+        stroke: black;
+        fill-opacity: 0;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        fill-opacity: 1;
+        fill: black;
+    }
+}
+
+
+button {
+    border: none;
+    padding: 4em 10px;
+    background-size: cover;
+    background-position: center;
+    font-size: 1.4em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Wittingau';
+    color: whitesmoke;
+    min-width: 6em;
+}
+
+
+.soorten section:first-of-type button {
+    background-image: url('./img/buttonbg1.png');
+    width: 100%;
+}
+
+.soorten section:nth-of-type(2) button {
+    background-image: url('./img/buttonbg2.png');
+}
+
+.soorten section:nth-of-type(3) button {
+    background-image: url('./img/buttonbg3.png');
+}
+
+.soorten section:nth-of-type(4) button {
+    background-image: url('./img/buttonbg4.png');
+}
+
+.soorten section button:hover {
+    background-size: 50%;
+    cursor: url(./img/cursor2.webp), auto;
+}
+
+/* Backgrounds: https://aleteia.org/2019/02/24/800-medieval-illuminated-manuscripts-are-now-available-online/ */
